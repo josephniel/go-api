@@ -10,6 +10,7 @@ import (
 func ApplyMiddlewares(e *echo.Echo, conf *config.Config) {
 	applyBasicAuthMiddleware(e, conf)
 	applyCORSMiddleware(e, conf)
+	applyLogger(e)
 }
 
 func applyBasicAuthMiddleware(e *echo.Echo, conf *config.Config) {
@@ -26,4 +27,8 @@ func applyCORSMiddleware(e *echo.Echo, conf *config.Config) {
 		AllowOrigins: conf.CORS.AllowedOrigins,
 		AllowMethods: conf.CORS.AllowedMethods,
 	}))
+}
+
+func applyLogger(e *echo.Echo) {
+	e.Use(middleware.Logger())
 }
