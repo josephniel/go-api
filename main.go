@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/josephniel/api/controllers"
-	"github.com/josephniel/api/router"
-	"github.com/josephniel/api/utils"
+	"github.com/josephniel/go-api/controllers"
+	"github.com/josephniel/go-api/router"
+	"github.com/josephniel/go-api/utils"
 	"github.com/labstack/echo"
 )
 

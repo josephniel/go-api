@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/josephniel/api/router"
-	"github.com/josephniel/api/schema"
+	"github.com/josephniel/go-api/router"
+	"github.com/josephniel/go-api/schema"
 	"github.com/labstack/echo"
 )
 
