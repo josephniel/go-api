@@ -2,10 +2,9 @@ package bootstrap
 
 import (
 	"fmt"
-	"io/ioutil"
-	"path/filepath"
 
 	"github.com/josephniel/go-api/app/config"
+	"github.com/josephniel/go-api/app/utils"
 	yaml "gopkg.in/yaml.v2"
 )
 
@@ -19,17 +18,6 @@ func GetConfiguration(env *string) (conf *config.Config) {
 	return
 }
 
-func readFromFile(env *string) (b []byte) {
-	envValue := *env
-	absPath, err := filepath.Abs(fmt.Sprintf("config/%s.yaml", envValue))
-	if err != nil {
-		panic(fmt.Sprintf("error: %v", err))
-	}
-
-	b, err = ioutil.ReadFile(absPath)
-	if err != nil {
-		panic(fmt.Sprintf("error: %v", err))
-	}
-
-	return
+func readFromFile(env *string) []byte {
+	return utils.ReadFromFile(fmt.Sprintf("config/%s.yaml", *env))
 }
