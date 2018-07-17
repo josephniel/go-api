@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"github.com/go-playground/validator"
 	"github.com/josephniel/go-api/app/config"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -10,6 +11,7 @@ import (
 func ApplyMiddlewares(e *echo.Echo, conf *config.Config) {
 	applyBasicAuthMiddleware(e, conf)
 	applyCORSMiddleware(e, conf)
+	applyRequestValidator(e)
 	applyLogger(e)
 }
 
@@ -27,6 +29,18 @@ func applyCORSMiddleware(e *echo.Echo, conf *config.Config) {
 		AllowOrigins: conf.CORS.AllowedOrigins,
 		AllowMethods: conf.CORS.AllowedMethods,
 	}))
+}
+
+type customValidator struct {
+	validator *validator.Validate
+}
+
+func (cv *customValidator) Validate(i interface{}) error {
+	return cv.validator.Struct(i)
+}
+
+func applyRequestValidator(e *echo.Echo) {
+	e.Validator = &customValidator{validator: validator.New()}
 }
 
 func applyLogger(e *echo.Echo) {

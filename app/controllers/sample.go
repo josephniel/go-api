@@ -2,29 +2,37 @@ package controllers
 
 import (
 	"net/http"
-	"strconv"
 
+	"github.com/josephniel/go-api/app/operations"
 	"github.com/josephniel/go-api/app/router"
 	"github.com/josephniel/go-api/app/schema"
 	"github.com/labstack/echo"
 )
 
-type sample struct {
-	ID int `json:"id"`
-}
-
 func getUser(context echo.Context) error {
-	id, err := strconv.ParseInt(context.Param("id"), 10, 32)
-	if err != nil {
-		return context.JSON(http.StatusUnprocessableEntity, schema.Error{
+	sampleStruct := new(schema.Sample)
+	if err := context.Bind(sampleStruct); err != nil {
+		context.JSON(http.StatusBadRequest, schema.Error{
 			Message: err.Error(),
 		})
+		return err
 	}
-	return context.JSON(http.StatusOK, sample{
-		ID: int(id),
-	})
+	if err := context.Validate(sampleStruct); err != nil {
+		context.JSON(http.StatusUnprocessableEntity, schema.Error{
+			Message: err.Error(),
+		})
+		return err
+	}
+	response, err := operations.GetUser(sampleStruct)
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, schema.Error{
+			Message: err.Error(),
+		})
+		return err
+	}
+	return context.JSON(http.StatusOK, response)
 }
 
 func init() {
-	router.Get("/users/:id", getUser)
+	router.Post("/users", getUser)
 }
