@@ -30,5 +30,6 @@ func applyCORSMiddleware(e *echo.Echo, conf *config.Config) {
 }
 
 func applyLogger(e *echo.Echo) {
+	e.Use(middleware.RequestID())
 	e.Use(middleware.Logger())
 }
