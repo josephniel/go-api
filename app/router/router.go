@@ -9,8 +9,7 @@ type Route struct {
 	Controller func(echo.Context) error
 }
 
-// Routes contain all the routes for the application
-var Routes []Route
+var routes []Route
 
 // Add is a generic function to add a route
 func Add(method string, path string, controller func(echo.Context) error) {
@@ -19,5 +18,10 @@ func Add(method string, path string, controller func(echo.Context) error) {
 		Path:       path,
 		Controller: controller,
 	}
-	Routes = append(Routes, route)
+	routes = append(routes, route)
+}
+
+// List returns all the routes for the application
+func List() []Route {
+	return routes
 }

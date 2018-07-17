@@ -1,0 +1,9 @@
+app:
+  port: 5000
+  user: 'joe'
+  password: 'secret'
+cors:
+  allowed_origins:
+    - '*'
+  allowed_methods:
+    - 'GET'

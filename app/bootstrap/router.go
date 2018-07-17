@@ -9,8 +9,10 @@ import (
 
 // RegisterRoutes encapsulates the route addition for the application
 func RegisterRoutes(e *echo.Echo) {
+	// initialize controllers first (i.e. so that the router can be prefilled)
 	controllers.Init()
-	for _, route := range router.Routes {
+	// add routes to the application
+	for _, route := range router.List() {
 		utils.CallFuncByName(e, route.Method, route.Path, route.Controller)
 	}
 }
