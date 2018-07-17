@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/josephniel/go-api/router"
-	"github.com/josephniel/go-api/schema"
+	"github.com/josephniel/go-api/app/router"
+	"github.com/josephniel/go-api/app/schema"
 	"github.com/labstack/echo"
 )
 
@@ -26,5 +26,5 @@ func getUser(context echo.Context) error {
 }
 
 func init() {
-	router.Add(router.Get, "/users/:id", getUser)
+	router.Get("/users/:id", getUser)
 }
