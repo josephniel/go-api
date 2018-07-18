@@ -1,7 +1,7 @@
 # go-api
 
 ## Description
-`go-api` is a boilerplate or RESTful microservices written in Go. This is a wrapper for the [echo famework](https://github.com/labstack/echo) which aims to simplify and further structurize API development in Go.
+`go-api` is a boilerplate for RESTful microservices written in Go. This is a wrapper for the [echo famework](https://github.com/labstack/echo) which aims to simplify and further structurize API development in Go.
 
 ## Notice
 This repository is still a work in progress.
