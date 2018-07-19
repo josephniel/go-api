@@ -17,7 +17,7 @@ func ApplyMiddlewares(e *echo.Echo, conf *config.Config) {
 
 func applyBasicAuthMiddleware(e *echo.Echo, conf *config.Config) {
 	e.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
-		if username == conf.App.User && password == conf.App.Password {
+		if username == conf.Auth.User && password == conf.Auth.Password {
 			return true, nil
 		}
 		return false, nil

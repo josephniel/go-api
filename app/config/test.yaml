@@ -1,5 +1,6 @@
 app:
   port: 5000
+auth:
   user: 'joe'
   password: 'secret'
 db:
@@ -11,3 +12,6 @@ cors:
     - '*'
   allowed_methods:
     - 'GET'
+    - 'POST'
+    - 'PATCH'
+    - 'DELETE'
