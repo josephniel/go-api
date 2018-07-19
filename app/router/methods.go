@@ -16,3 +16,8 @@ func Post(path string, controller func(echo.Context) error) {
 func Patch(path string, controller func(echo.Context) error) {
 	Add(echo.PATCH, path, controller)
 }
+
+// Delete adds a DELETE method given a path and a controller
+func Delete(path string, controller func(echo.Context) error) {
+	Add(echo.DELETE, path, controller)
+}
