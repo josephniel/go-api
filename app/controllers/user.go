@@ -45,9 +45,7 @@ func addUser(context echo.Context) error {
 			Message: err.Error(),
 		})
 	}
-	return context.JSON(http.StatusOK, schema.Message{
-		Message: "User successfully added!",
-	})
+	return context.JSON(http.StatusOK, user)
 }
 
 func init() {
