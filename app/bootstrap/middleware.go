@@ -10,7 +10,6 @@ import (
 // ApplyMiddlewares encapsulates the all the middleware instatiation used in the application
 func ApplyMiddlewares(e *echo.Echo, conf *config.Config) {
 	applyBasicAuthMiddleware(e, conf)
-	applyCORSMiddleware(e, conf)
 	applyRequestValidator(e)
 	applyLogger(e)
 }
@@ -21,13 +20,6 @@ func applyBasicAuthMiddleware(e *echo.Echo, conf *config.Config) {
 			return true, nil
 		}
 		return false, nil
-	}))
-}
-
-func applyCORSMiddleware(e *echo.Echo, conf *config.Config) {
-	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: conf.CORS.AllowedOrigins,
-		AllowMethods: conf.CORS.AllowedMethods,
 	}))
 }
 

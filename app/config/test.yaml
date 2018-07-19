@@ -7,11 +7,3 @@ db:
   database: 'sample'
   user: 'jtuazon'
   password: 'secret'
-cors:
-  allowed_origins:
-    - '*'
-  allowed_methods:
-    - 'GET'
-    - 'POST'
-    - 'PATCH'
-    - 'DELETE'
