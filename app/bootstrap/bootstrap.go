@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"fmt"
 
+	"github.com/josephniel/go-api/app/model"
 	"github.com/labstack/echo"
 )
 
@@ -15,8 +16,16 @@ type Bootstrap struct {
 // Ignite calls in the bootstrap processes
 func (b *Bootstrap) Ignite() {
 	conf := GetConfiguration(b.Environment)
-	SetupDB(conf)
-	defer CloseDB()
+
+	db := DB{
+		User:         conf.DB.User,
+		Password:     conf.DB.Password,
+		DatabaseName: conf.DB.Database,
+		Database:     &model.DB,
+	}
+	db.SetupDB()
+	defer db.CloseDB()
+
 	ApplyMiddlewares(b.Server, conf)
 	RegisterRoutes(b.Server)
 	b.Server.Logger.Fatal(b.Server.Start(fmt.Sprintf(":%d", conf.App.Port)))
