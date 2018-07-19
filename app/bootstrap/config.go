@@ -19,5 +19,5 @@ func GetConfiguration(env *string) (conf *config.Config) {
 }
 
 func readFromFile(env *string) []byte {
-	return utils.ReadFromFile(fmt.Sprintf("config/%s.yaml", *env))
+	return utils.ReadFromFile(fmt.Sprintf("app/config/%s.yaml", *env))
 }
