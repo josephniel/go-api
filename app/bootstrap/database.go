@@ -9,19 +9,19 @@ type DB struct {
 	User         string
 	Password     string
 	DatabaseName string
-	Database     **pg.DB
+	DatabaseObj  **pg.DB
 }
 
-// SetupDB sets up the database connection to be used by the application
-func (db *DB) SetupDB() {
-	*db.Database = pg.Connect(&pg.Options{
+// Start sets up the database connection to be used by the application
+func (db *DB) Start() {
+	*db.DatabaseObj = pg.Connect(&pg.Options{
 		User:     db.User,
 		Password: db.Password,
 		Database: db.DatabaseName,
 	})
 }
 
-// CloseDB is a wrapper for the pg.DB.Close function which closes the database connection
-func (db *DB) CloseDB() {
-	(*db.Database).Close()
+// Close is a wrapper for the pg.DB.Close function which closes the database connection
+func (db *DB) Close() {
+	(*db.DatabaseObj).Close()
 }

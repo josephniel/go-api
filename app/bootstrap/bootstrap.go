@@ -21,10 +21,10 @@ func (b *Bootstrap) Ignite() {
 		User:         conf.DB.User,
 		Password:     conf.DB.Password,
 		DatabaseName: conf.DB.Database,
-		Database:     &model.DB,
+		DatabaseObj:  &model.DB,
 	}
-	db.SetupDB()
-	defer db.CloseDB()
+	db.Start()
+	defer db.Close()
 
 	ApplyMiddlewares(b.Server, conf)
 	RegisterRoutes(b.Server)
