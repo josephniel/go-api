@@ -2,6 +2,10 @@ app:
   port: 5000
   user: 'joe'
   password: 'secret'
+db:
+  database: 'sample'
+  user: 'jtuazon'
+  password: 'secret'
 cors:
   allowed_origins:
     - '*'

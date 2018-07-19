@@ -44,7 +44,7 @@ go run app/main.go -env=<env>
     ```
     The relative path follows the path specification in Echo.
 
-    - `/models` should *ideally* only contain structures for the database mapping. 
+    - `/models` contains database mapping for the application. For this repository, we use postgres with the [pg ORM](https://github.com/go-pg/pg). The defined structure also doubles as a schema for requests such as `POST` or `PATCH`. This is to reduce redundancy when defining structures for a model and a schema. Also, the database connection is accessible in `models.DB`. All database operations should be done in the `/operations` folder using the `models.DB` connection.
 
     - `/operations` contains all the business logic performed in the controller. This is directly called by the controller and should always be used. Business logic should never be in the controller (i.e. as it gets cluttered really easy)
 
