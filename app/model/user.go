@@ -1,4 +1,4 @@
-package models
+package model
 
 // User is the map for `users` DB
 type User struct {

@@ -1,11 +1,11 @@
-package controllers
+package controller
 
 import (
 	"net/http"
 	"strconv"
 
-	"github.com/josephniel/go-api/app/models"
-	"github.com/josephniel/go-api/app/operations"
+	"github.com/josephniel/go-api/app/model"
+	"github.com/josephniel/go-api/app/operation"
 	"github.com/josephniel/go-api/app/router"
 	"github.com/josephniel/go-api/app/schema"
 	"github.com/labstack/echo"
@@ -18,7 +18,7 @@ func getUser(context echo.Context) error {
 			Message: err.Error(),
 		})
 	}
-	response, err := operations.GetUser(id)
+	response, err := operation.GetUser(id)
 	if err != nil {
 		return context.JSON(http.StatusInternalServerError, schema.Message{
 			Message: err.Error(),
@@ -28,7 +28,7 @@ func getUser(context echo.Context) error {
 }
 
 func addUser(context echo.Context) error {
-	user := new(models.User)
+	user := new(model.User)
 	if err := context.Bind(user); err != nil {
 		return context.JSON(http.StatusBadRequest, schema.Message{
 			Message: err.Error(),
@@ -39,7 +39,7 @@ func addUser(context echo.Context) error {
 			Message: err.Error(),
 		})
 	}
-	err := operations.AddUser(user)
+	err := operation.AddUser(user)
 	if err != nil {
 		return context.JSON(http.StatusInternalServerError, schema.Message{
 			Message: err.Error(),

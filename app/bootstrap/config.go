@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/josephniel/go-api/app/config"
-	"github.com/josephniel/go-api/app/utils"
+	"github.com/josephniel/go-api/app/util"
 	yaml "gopkg.in/yaml.v2"
 )
 
@@ -19,5 +19,5 @@ func GetConfiguration(env *string) (conf *config.Config) {
 }
 
 func readFromFile(env *string) []byte {
-	return utils.ReadFromFile(fmt.Sprintf("app/config/%s.yaml", *env))
+	return util.ReadFromFile(fmt.Sprintf("app/config/%s.yaml", *env))
 }

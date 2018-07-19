@@ -24,10 +24,10 @@ go run app/main.go -env=<env>
 
     - `/config` contains the base configuration structure used by the application when instantiating. This also contains environment-specific configuration named: `<env>.yaml`. 
 
-    - `/controllers` contains all the entrypoints in the application. A common practice that should be followed in this repository is for every controller, we only need to call the helper functions `Get`, `Post`, `Patch` in the `router` package to register the route for the particular method selected. We can isolate the route definition for the specified controller by defining an `init()` function in the file.
+    - `/controller` contains all the entrypoints in the application. A common practice that should be followed in this repository is for every controller, we only need to call the helper functions `Get`, `Post`, `Patch` in the `router` package to register the route for the particular method selected. We can isolate the route definition for the specified controller by defining an `init()` function in the file.
 
     ```
-    package controllers
+    package controller
 
     import "github.com/josephniel/go-api/app/router"
 
@@ -44,14 +44,14 @@ go run app/main.go -env=<env>
     ```
     The relative path follows the path specification in Echo.
 
-    - `/models` contains database mapping for the application. For this repository, we use postgres with the [pg ORM](https://github.com/go-pg/pg). The defined structure also doubles as a schema for requests such as `POST` or `PATCH`. This is to reduce redundancy when defining structures for a model and a schema. Also, the database connection is accessible in `models.DB`. All database operations should be done in the `/operations` folder using the `models.DB` connection.
+    - `/model` contains database mapping for the application. For this repository, we use postgres with the [pg ORM](https://github.com/go-pg/pg). The defined structure also doubles as a schema for requests such as `POST` or `PATCH`. This is to reduce redundancy when defining structures for a model and a schema. Also, the database connection is accessible in `model.DB`. All database operations should be done in the `/operation` folder using the `model.DB` connection.
 
-    - `/operations` contains all the business logic performed in the controller. This is directly called by the controller and should always be used. Business logic should never be in the controller (i.e. as it gets cluttered really easy)
+    - `/operation` contains all the business logic performed in the controller. This is directly called by the controller and should always be used. Business logic should never be in the controller (i.e. as it gets cluttered really easy)
 
     - `/router` contains the helper methods for registering a route for a controller.
 
     - `/schema` contains structures that work as schemas/DTOs for the application.
 
-    - `/utils` contains general utility functions.
+    - `/util` contains general utility functions.
 
     - `main.go` is the entrypoint of the application.
