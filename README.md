@@ -7,8 +7,10 @@
 This repository is still a work in progress.
 
 ## Installation
-This is meant to be cloned and not imported as a package; You can `go get github.com/josephniel/go-api` and just replace all instances for the imports relative to the repository namespace.
-
+This is meant to be cloned and not imported as a package; After cloning, we use [dep](https://github.com/golang/dep) as our dependency manager. 
+```
+dep ensure
+```
 After setting up, you can try to load the application by running
 ```
 go run app/main.go
