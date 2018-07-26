@@ -7,18 +7,12 @@
 This repository is still a work in progress.
 
 ## Installation
-This is meant to be cloned and not imported as a package; After cloning, we use [dep](https://github.com/golang/dep) as our dependency manager. 
+The application is dockerized. To be able to run, you can:
 ```
-dep ensure
+docker-compose build
+docker-compose up
 ```
-After setting up, you can try to load the application by running
-```
-go run app/main.go
-```
-You can also set an environment flag in the command (i.e. to be able to read environment-specific configurations for the application).
-```
-go run app/main.go -env=<env>
-```
+to build and spin up the dockerized application.
 
 ## Directory Structure
 - `/app`
