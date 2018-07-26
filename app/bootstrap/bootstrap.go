@@ -11,6 +11,7 @@ import (
 type Bootstrap struct {
 	Server      *echo.Echo
 	Environment *string
+	Port        *int64
 }
 
 // Ignite calls in the bootstrap processes
@@ -28,5 +29,5 @@ func (b *Bootstrap) Ignite() {
 
 	ApplyMiddlewares(b.Server, conf)
 	RegisterRoutes(b.Server)
-	b.Server.Logger.Fatal(b.Server.Start(fmt.Sprintf(":%d", conf.App.Port)))
+	b.Server.Logger.Fatal(b.Server.Start(fmt.Sprintf(":%d", *b.Port)))
 }

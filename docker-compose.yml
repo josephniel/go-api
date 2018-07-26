@@ -1,0 +1,12 @@
+version: '2'
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: go-api
+    environment:
+      PORT: 9000
+      ENV: test
+    ports:
+      - 9000:9000
